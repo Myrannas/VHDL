@@ -1,0 +1,294 @@
+//entity Mux is
+//port(	I3: 	in std_logic_vector(2 downto 0);
+//	I2: 	in std_logic_vector(2 downto 0);
+//	I1: 	in std_logic_vector(2 downto 0);
+//	I0: 	in std_logic_vector(2 downto 0);
+//	S:	in std_logic_vector(1 downto 0);
+//	O:	out std_logic_vector(2 downto 0)
+//);
+//end Mux;
+{
+    tokens = [
+        T_ENTITY = 'entity'
+        T_ARCHITECTURE = 'architecture'
+        T_LIBRARY = 'library'
+        T_USE = 'use'
+
+
+        T_OF = 'of'
+        T_BEGIN = 'begin'
+        T_IS = 'is'
+        T_DOT = '.';
+
+        T_SEMI = ';'
+        T_COLON = ':'
+        T_LEFT_PAREN = '('
+        T_RIGHT_PAREN = ')'
+        T_EQU = '='
+
+        T_ADD = '+'
+        T_SUB = '-'
+        T_DIV = '/'
+        T_MUL = '*'
+        T_AND = 'and'
+        T_OR = 'or'
+        T_NAND = 'nand'
+        T_NOR = 'nor'
+        T_XOR = 'xor'
+        T_XNOR = 'xnor'
+        T_SLL = 'sll'
+        T_SRL = 'srl'
+        T_SLA = 'sla'
+        T_SRA = 'sra'
+        T_ROL = 'rol'
+        T_ROR = 'ror'
+
+        T_EXP = '**'
+        T_NOT = 'not'
+        T_ABS = 'abs'
+        T_MOD = 'mod'
+        T_REM = 'rem'
+        T_CONCAT = '&'
+        T_NE = '/='
+        T_LT = '<'
+        T_GT = '>'
+        T_GTE = '>='
+
+        T_PROCESS = 'process'
+
+        T_PORT = 'port'
+        T_END = 'end'
+        T_WHEN = 'when'
+        T_ELSE = 'else'
+        T_OTHERS = 'others'
+        T_CASE = 'case'
+        T_NEXT = 'next'
+        T_EXIT = 'exit'
+        T_RETURN = 'return'
+        T_VARIABLE ='variable'
+
+        T_LOOP = 'loop'
+        T_FOR = 'for'
+        T_WHILE = 'while'
+        T_THEN = 'then'
+        T_ELSIF = 'elsif'
+        T_IF = 'if'
+
+        T_IN = 'in'
+        T_OUT = 'out'
+        T_INOUT = 'inout'
+
+        T_NOBLOCK_ASSIGN = '<='
+        T_BLOCK_ASSIGN = ':='
+        T_RARR = '=>'
+
+        id ='regexp:[A-Za-z\_]+'
+        strlit='regexp:[A-Za-z\_]+'
+        comment='regexp:\-\-.+'
+        integer='regexp:[\d_]+'
+    ]
+
+    parserClass="com.oatau.vhdl.parser.VhdlParser"
+    stubParserClass="com.oatau.vhdl.parser.GeneratedParser"
+
+    extends="com.intellij.extapi.psi.ASTWrapperPsiElement"
+
+    psiClassPrefix="V"
+    psiImplClassSuffix="Impl"
+    psiPackage="com.oatau.vhdl.psi"
+    psiImplPackage="com.oatau.vhdl.psi.impl"
+
+    elementTypeHolderClass="com.oatau.vhdl.psi.VhdlTypes"
+    elementTypeClass="com.oatau.vhdl.psi.SimpleElementType"
+    tokenTypeClass="com.oatau.vhdl.psi.SimpleTokenType"
+}
+
+file ::= (element_ ';')*  {pin(".*")=1}
+
+private element_ ::= ('entity' entity )| ('library' library)|('use' use)|('architecture' architecture) {pin(".*")=1 recoverUntil=recover_semi_}
+
+library ::= id;
+use ::= library_path;
+
+entity ::= id 'is' ports 'end' id?
+architecture ::= id 'of' id 'is' 'begin' architecture_body 'end' id?
+recover_::= !('end')
+
+architecture_body ::= (architecture_element ';')*
+private architecture_element ::= statement
+private recover_semi_ ::= ! ';'
+
+statement ::= id '<=' (statement_when)* expression
+statement_when ::= expression 'when' condition 'else'
+condition ::= ref '=' expression
+
+concurrent_statement ::= process
+
+process ::= id ':' 'process' [sensitivity_list] ['is'] [process_declarative_items] 'begin' sequential_statements 'end' 'process' [id]
+sensitivity_list ::= '(' ref (',' ref)* ')'
+process_declarative_items ::= variable_declaration
+variable_declaration ::= 'variable' id ':' id [ ':=' expression]
+
+sequential_statements ::=
+    (sequential_statement ';')*
+
+private sequential_statement ::=
+    if_statement
+    | signal_assignment
+    | variable_assignment
+    | procedure_call
+    | case_statement
+    | loop_statement
+    | next_statement
+    | exit_statement
+    | return_statement
+
+signal_assignment ::=
+    label ref '<=' expression
+
+variable_assignment ::=
+    label ref '<=' expression
+
+procedure_call ::=
+    label ref ['(' [ parameter_list ]')']
+
+case_statement ::=
+    label 'case' expression 'is'
+    ('when' literal '=>' sequential_statements)+
+    ['when' 'others' '=>' sequential_statements]
+    'end' 'case' [id]
+
+fake loop_statement ::=
+    label loop_loop_statement
+    | for_statement
+    | while_statement [id]
+
+next_statement ::=
+    label 'next' [id] ['when' expression]
+
+exit_statement ::=
+    label 'exit' [id] ['when' expression]
+
+return_statement ::=
+    label 'return' expression
+
+
+
+private loop_loop_statement ::= 'loop' sequential_statements 'end' 'loop'
+private for_statement ::= 'for' ref 'in' range 'loop' sequential_statements 'end' 'loop'
+private while_statement ::= 'while' expression 'loop' sequential_statements 'end' 'loop'
+
+if_statement ::= [id ':']'if' expression 'then'  sequential_statements ('elsif' 'then' sequential_statements)* ['else' sequential_statements] 'end' 'if' [id]
+
+private parameter_list ::= (ref | formal_parameter) (',' ref|formal_parameter)*
+private formal_parameter ::= id '=>' expression
+
+
+fake label ::= [id ':']
+
+
+ports ::= 'port' '(' port_definition (';' port_definition)* ')' ';'
+
+port_definition ::= id ':' direction typedef
+
+private typedef ::= type
+
+range ::= simple_expression direction simple_expression
+
+simple_expression ::= ['+'|'-'] term add_operator term
+term ::= factor {mul_operator factor}
+factor ::= primary ['**' primary]
+    | 'abs' primary
+    | 'not' primary
+
+primary ::=
+    name
+    | literal
+    | aggregate
+    | function_call
+    | qualified_expression
+    | type_conversion
+    | allocator
+    | '(' expression ')'
+
+name ::=
+    simple_name
+    | operator_symbol
+    | selected_name
+    | indexed_name
+    | slice_name
+    | attribute_name
+
+selected_name ::=
+    prefix '.' suffix
+
+prefix ::=
+    name
+    | function_call
+
+function_call ::=
+    id [ '(' association_element ')' ]
+
+association_element ::=
+    [formal_part '=>'] actual_part
+
+formal_part ::=
+    formal_designator
+
+operator_symbol ::= string_literal
+
+simple_name ::= id
+
+literal ::=
+    numeric_literal
+    | enumeration_literal
+    | string_literal
+    | bit_string_literal
+    | 'null'
+numeric_literal ::= abstract_literal
+    | physical_literal
+
+abstract_literal ::= decimal_literal
+    | based_literal
+
+decimal_literal ::= integer ['.' integer] [exponent]
+exponent ::= ('e' ['+'] integer) | ('e' '-' integer)
+
+based_literal ::= base '#' based_integer ['.' based_integer] '#' exponent
+fake base ::= integer
+
+//Expressions
+expression ::= ('not' unary_expression) | ('abs' unary_expression) | unary_expression
+unary_expression ::= exp_expression (exp_operator exp_expression)*
+exp_expression ::= mul_expression (mul_operator mul_expression)*
+mul_expression ::= add_expression (add_operator add_expression)*
+add_expression ::= shift_expression (shift_operator shift_expression)*
+shift_expression ::= log_expression (log_operator log_expression)*
+log_expression ::= bitwise_expression (bitwise_operator bitwise_expression)*
+bitwise_expression ::= ref | '(' expression ')'
+ref ::= id
+
+//Operators
+private exp_operator ::= '**'
+private unary_operator ::= 'not'|'abs'
+private mul_operator ::= '*'|'/'|'mod'|'rem'
+private add_operator ::= '+'|'-'|'&'
+private log_operator ::= '='|'/='|'<'|'<='|'>'|'>='
+private bitwise_operator ::= 'and' | 'or' | 'nand' | 'nor' | 'xor' | 'xnor'
+private shift_operator ::= 'sll' | 'srl' | 'sla' | 'sra' | 'rol' | 'ror'
+
+
+type ::= id
+library_path ::= ( id '.' )* id
+
+private direction ::= 'in' | 'out' | 'inout'
+
+
+
+//DIRECTION ::= in | out | inout
+//TYPE ::= VEC_TYPE
+//VEC_TYPE ::= "std_logic_vector" '(' A "downto" B ')'
+//
+//ENTITY ::= T_ENTITY ID is port (PORT *) ';' end ID ';'
+//
+//PORT ::= ID ':' DIRECTION TYPE

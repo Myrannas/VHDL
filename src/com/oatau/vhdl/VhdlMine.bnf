@@ -1,0 +1,329 @@
+{
+    tokens = [
+        T_ENTITY = 'entity'
+        T_ARCHITECTURE = 'architecture'
+        T_LIBRARY = 'library'
+        T_USE = 'use'
+
+
+        T_OF = 'of'
+        T_BEGIN = 'begin'
+        T_IS = 'is'
+        T_DOT = '.';
+
+        T_SEMI = ';'
+        T_COLON = ':'
+        T_LEFT_PAREN = '('
+        T_RIGHT_PAREN = ')'
+        T_EQU = '='
+
+        T_ADD = '+'
+        T_SUB = '-'
+        T_DIV = '/'
+        T_MUL = '*'
+        T_AND = 'and'
+        T_OR = 'or'
+        T_NAND = 'nand'
+        T_NOR = 'nor'
+        T_XOR = 'xor'
+        T_XNOR = 'xnor'
+        T_SLL = 'sll'
+        T_SRL = 'srl'
+        T_SLA = 'sla'
+        T_SRA = 'sra'
+        T_ROL = 'rol'
+        T_ROR = 'ror'
+
+        T_EXP = '**'
+        T_NOT = 'not'
+        T_ABS = 'abs'
+        T_MOD = 'mod'
+        T_REM = 'rem'
+        T_CONCAT = '&'
+        T_NE = '/='
+        T_LT = '<'
+        T_GT = '>'
+        T_GTE = '>='
+
+        T_PROCESS = 'process'
+
+        T_PORT = 'port'
+        T_END = 'end'
+        T_WHEN = 'when'
+        T_ELSE = 'else'
+        T_OTHERS = 'others'
+        T_CASE = 'case'
+        T_NEXT = 'next'
+        T_EXIT = 'exit'
+        T_RETURN = 'return'
+        T_VARIABLE ='variable'
+        T_BLOCK = 'block'
+        T_PURE ='pure'
+        T_IMPURE ='impure'
+        T_FUNCTION = 'function'
+        T_PROCEDURE = 'procedure'
+        T_POSTPONED = 'postponed'
+        T_COMPONENT = 'component'
+        T_ASSERT = 'assert'
+        T_REPORT = 'report'
+        T_SEVERITY = 'severity'
+        T_CONFIGURATION = 'configuration'
+        T_CONSTRAINT = 'constraint'
+        T_ARRAY = 'array'
+        T_PACKAGE = 'package'
+        T_TYPE = 'type'
+        T_SUBTYPE = 'subtype'
+        T_UNTIL = 'until'
+        T_CONSTANT = 'constant'
+        T_TRANSPORT = 'transport'
+        T_REJECT = 'reject'
+        T_GROUP = 'group'
+        T_GENERIC = 'generic'
+        T_SIGNAL = 'signal'
+        T_RECORD = 'record'
+
+        T_LOOP = 'loop'
+        T_FOR = 'for'
+        T_WHILE = 'while'
+        T_THEN = 'then'
+        T_ELSIF = 'elsif'
+        T_IF = 'if'
+        T_OPEN = 'open'
+        T_ACCESS = 'access'
+        T_ALIAS = 'alias'
+        T_NEW = 'new'
+        T_ATTRIBUTE = 'attribute'
+        T_INERTIAL = 'inertial'
+        T_BUFFER = 'buffer'
+        T_LINKAGE = 'linkage'
+        T_WITH = 'with'
+        T_SELECT = 'select'
+        T_GENERATE = 'generate'
+        T_MAP = 'map'
+        T_SIGNAL = 'signal'
+        T_LITERAL = 'literal'
+        T_LABEL = 'label'
+        T_FILE = 'file'
+        T_TO = 'to'
+        T_DOWNTO = 'downto'
+        T_DISCONNECT = 'disconnect'
+        T_AFTER = 'after'
+        T_GUARDED = 'guarded'
+        T_BODY = 'body'
+        T_REGISTER = 'register'
+        T_BUS = 'bus'
+        T_UNAFFECTED = 'unaffected'
+        T_SHARED = 'shared'
+        T_ALL = 'all'
+        T_NE = '<>'
+        T_CMA = ','
+        T_ON = 'on'
+
+        T_NULL = 'null'
+        T_IN = 'in'
+        T_OUT = 'out'
+        T_INOUT = 'inout'
+        T_UNITS = 'units'
+
+        T_NOBLOCK_ASSIGN = '<='
+        T_BLOCK_ASSIGN = ':='
+        T_RARR = '=>'
+
+        ID ='id'
+        STRLIT='strlit'
+        COMMENT='comment'
+        INTLIT='intlit'
+        LETLIT='letter'
+        CHARLIT='character'
+        EXID='exid'
+        BITLIT='bitlit'
+        EXDIGIT='exdigit'
+        SIGLIT='siglit'
+    ]
+
+    parserClass="com.oatau.vhdl.parser.VhdlParser"
+    stubParserClass="com.oatau.vhdl.parser.GeneratedParser"
+
+    extends="com.intellij.extapi.psi.ASTWrapperPsiElement"
+
+    psiClassPrefix="V"
+    psiImplClassSuffix="Impl"
+    psiPackage="com.oatau.vhdl.psi"
+    psiImplPackage="com.oatau.vhdl.psi.impl"
+
+    elementTypeHolderClass="com.oatau.vhdl.psi.VhdlTypes"
+    elementTypeClass="com.oatau.vhdl.psi.SimpleElementType"
+    tokenTypeClass="com.oatau.vhdl.psi.SimpleTokenType"
+
+    extends("entity")="com.intellij.extapi.psi.ASTWrapperPsiElement"
+    injection("entity")="com.oatau.vhdl.psi.impl.VhdlEntity"
+}
+
+
+
+file ::= (element ';')* {pin(".*")=1 recoverUntil=file_recover}
+private file_recover ::= ! ';'
+
+element ::=
+    'entity' entity
+    | 'architecture' architecture
+    | 'library' identifier
+    | 'use' import_ {pin(".*") = 1}
+
+entity ::=
+    identifier 'is'
+    [ 'generic' '(' generic_list ')' ';']
+    [ 'port' '(' port_list ')' ';']
+    'end' ['entity'] [identifier] {pin(".*") =1 methods=[entityName="/identifier[0]"] }
+
+
+architecture ::=
+    identifier 'of' entity_ref 'is'
+    architecture_declarative_items
+    'begin'
+    concurrent_statement_list
+    'end' 'architecture' identifier {pin(".*") = 1}
+private architecture_declarative_items ::=
+    (architecture_declarative_item ';')*
+
+architecture_declarative_item ::=
+    'signal' identifier ':' port_type [':=' expression]
+
+private port_list ::=
+    port (';' port)*
+
+private generic_list ::=
+    generic (';' generic)*
+
+port ::= identifier ':' [ direction ] port_type {pin(".*") = 1}
+generic ::= identifier ':' generic_type [':=' expression]
+
+//---------------------------------------------
+// Concurrent statements
+private concurrent_statement_list ::=
+    (concurrent_statement ';')*
+
+concurrent_statement ::=
+    'process' process_statement
+    | concurrent_assignment {pin(".*")=1 recoverUntil="recover_not_semi"}
+
+private recover_not_semi ::= !';'
+
+//---------------------------------------------
+// Sequential statements
+
+private sequential_statement_list ::=
+    (sequential_statement';')*
+
+sequential_statement ::=
+    'case' case_statement
+    | 'if' if_statement
+    | sequential_assignment {pin(".*")=1 recoverUntil="recover_not_semi"}
+
+
+//---------------------------------------------
+// Assignment
+concurrent_assignment ::=
+    element_ref '<=' expression {pin(".*")=2}
+
+private sequential_assignment ::=
+    element_ref ('<='|':=') expression {pin(".*")=2}
+
+//---------------------------------------------
+// Process statement
+
+process_statement ::=
+    '(' process_signal_list ')' 'is' 'begin'
+        sequential_statement_list
+    'end' ['process']
+
+private process_signal_list ::=
+    element_ref (',' element_ref)*
+
+//---------------------------------------------
+// Case
+
+case_statement ::=
+    element_ref 'is'
+    (case_statement_branch)*
+    [case_statement_others_branch]
+    'end' ['case']
+
+
+private case_statement_branch ::=
+    'when' literal '=>' sequential_statement_list
+
+private case_statement_others_branch ::=
+    'when' 'others' '=>' sequential_statement_list
+
+
+//---------------------------------------------
+// If
+if_statement ::=
+    expression 'then'
+        sequential_statement_list
+    ('elsif' expression 'then'
+        sequential_statement_list)*
+    ['else' sequential_statement_list]
+    'end' ['if']
+
+
+
+
+//expression
+expression ::= logical_expression (logical_operator logical_expression)*
+private logical_expression ::= relational_expression (relational_operator relational_expression)*
+private relational_expression ::= shift_expression (shift_operator shift_expression)*
+private shift_expression ::= additive_expression (additive_operator additive_expression)*
+private additive_expression ::= [unary_additive_operator] unary_additive_expression
+private unary_additive_expression ::= multiplicative_expression (multiplicative_operator multiplicative_expression)*
+private multiplicative_expression ::=
+    unary_operator expression
+    | par_expression power_operator par_expression
+    | par_expression
+
+private par_expression ::=
+    '(' expression ')'
+    | expression_element {pin(".*")=1}
+
+
+expression_element ::=
+    element_ref
+    | literal
+
+logical_operator ::= 'and' | 'or' | 'nand' | 'nor' | 'xor' | 'xnor'
+relational_operator ::= '=' | '/=' | '<' | '<=' | '>' | '>='
+shift_operator ::= 'sll' | 'srl' | 'sla' | 'sra' | 'rol' | 'ror'
+unary_additive_operator ::= '+' | '-'
+additive_operator ::= '+' | '-' | '&'
+multiplicative_operator ::= '*' | '/' | 'mod' | 'rem'
+power_operator ::= '**'
+unary_operator ::= 'abs' | 'not'
+
+//Constant enums
+direction ::=
+    'in'
+    | 'out'
+    | 'inout'
+    | 'buffer'
+
+//Types
+port_type ::= identifier [ '(' slice_type ')' ]
+slice_type ::= expression 'downto' expression
+
+generic_type ::= identifier
+import_ ::= identifier ('.' identifier)* ['.' 'all']
+entity_ref ::= identifier
+element_ref ::= identifier [element_ref_tail]
+private element_ref_tail ::= '(' expression (',' expression)* ')'
+
+
+//Literals/raw types
+identifier ::= id
+literal ::=
+    numeric_literal
+    | signal_literal
+
+
+numeric_literal ::= intlit
+signal_literal ::= siglit
