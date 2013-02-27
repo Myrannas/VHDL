@@ -143,8 +143,9 @@
 
     parserClass="com.oatau.vhdl.parser.VhdlParser"
     stubParserClass="com.oatau.vhdl.parser.GeneratedParser"
+    psiImplUtilClass="com.oatau.vhdl.psi.impl.VhdlEntity"
 
-    extends="com.intellij.extapi.psi.ASTWrapperPsiElement"
+    extends(".*")="com.intellij.extapi.psi.ASTWrapperPsiElement"
 
     psiClassPrefix="V"
     psiImplClassSuffix="Impl"
@@ -155,8 +156,8 @@
     elementTypeClass="com.oatau.vhdl.psi.SimpleElementType"
     tokenTypeClass="com.oatau.vhdl.psi.SimpleTokenType"
 
-    extends("entity")="com.intellij.extapi.psi.ASTWrapperPsiElement"
-    injection("entity")="com.oatau.vhdl.psi.impl.VhdlEntity"
+    implements("entity|port|architecture_signal") = "com.oatau.vhdl.psi.VhdlNamedElement"
+    implements("architecture") = "com.oatau.vhdl.psi.VhdlScope"
 }
 
 
@@ -164,7 +165,7 @@
 file ::= (element ';')* {pin(".*")=1 recoverUntil=file_recover}
 private file_recover ::= ! ';'
 
-element ::=
+private element ::=
     'entity' entity
     | 'architecture' architecture
     | 'library' identifier
@@ -174,7 +175,7 @@ entity ::=
     identifier 'is'
     [ 'generic' '(' generic_list ')' ';']
     [ 'port' '(' port_list ')' ';']
-    'end' ['entity'] [identifier] {pin(".*") =1 methods=[entityName="/identifier[0]"] }
+    'end' ['entity'] [identifier] {pin(".*") =1 methods=[entityName="/identifier[0]" getName setName getLookupElement] }
 
 
 architecture ::=
@@ -182,12 +183,14 @@ architecture ::=
     architecture_declarative_items
     'begin'
     concurrent_statement_list
-    'end' 'architecture' identifier {pin(".*") = 1}
+    'end' 'architecture' identifier {pin(".*") = 1 methods=[getVariables]}
 private architecture_declarative_items ::=
     (architecture_declarative_item ';')*
 
 architecture_declarative_item ::=
-    'signal' identifier ':' port_type [':=' expression]
+    'signal' architecture_signal {pin(".*") = 1}
+
+architecture_signal ::= identifier ':' port_type [':=' expression] {pin(".*") = 1 methods=[getName setName getLookupElement]}
 
 private port_list ::=
     port (';' port)*
@@ -195,7 +198,7 @@ private port_list ::=
 private generic_list ::=
     generic (';' generic)*
 
-port ::= identifier ':' [ direction ] port_type {pin(".*") = 1}
+port ::= identifier ':' [ direction ] port_type {pin(".*") = 1 methods=[getName setName getLookupElement]}
 generic ::= identifier ':' generic_type [':=' expression]
 
 //---------------------------------------------

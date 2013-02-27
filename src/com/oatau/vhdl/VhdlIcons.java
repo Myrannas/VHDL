@@ -1,6 +1,6 @@
 package com.oatau.vhdl;
 
-import com.intellij.util.Icons;
+import com.intellij.util.PlatformIcons;
 
 import javax.swing.*;
 
@@ -11,5 +11,5 @@ import javax.swing.*;
  * Time: 3:22 PM
  */
 public class VhdlIcons {
-    public static final Icon FILE = Icons.FILE_ICON;
+    public static final Icon FILE = PlatformIcons.FILE_ICON;
 }
