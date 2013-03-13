@@ -182,10 +182,15 @@ architecture ::=
     identifier 'of' entity_ref 'is'
     architecture_declarative_items
     'begin'
-    concurrent_statement_list
-    'end' 'architecture' identifier {pin(".*") = 1 methods=[getVariables]}
+    architecture_statement_list
+    architecture_tail {pin = 1 methods=[getVariables]}
+
+private architecture_tail ::= 'end' ['architecture'] [identifier]
 private architecture_declarative_items ::=
-    (architecture_declarative_item ';')*
+    (architecture_declarative_item ';')* {recoverUntil = architecture_declarative_item_recover}
+private architecture_declarative_item_recover ::= ! ('begin'|architecture_tail)
+private architecture_statement_list ::= concurrent_statement_list {recoverUntil = architecture_statement_list_recover}
+private architecture_statement_list_recover ::= ! architecture_tail
 
 architecture_declarative_item ::=
     'signal' architecture_signal {pin(".*") = 1}
@@ -263,12 +268,14 @@ private case_statement_others_branch ::=
 //---------------------------------------------
 // If
 if_statement ::=
-    expression 'then'
-        sequential_statement_list
-    ('elsif' expression 'then'
-        sequential_statement_list)*
-    ['else' sequential_statement_list]
+    if_statement_branch
+    (if_elsif_statement)*
+    [if_else_statement]
     'end' ['if']
+private if_statement_branch ::= expression 'then' sequential_statement_list {pin=1 recoverUntil=if_recover}
+private if_elsif_statement ::= 'elsif' expression 'then' sequential_statement_list {pin=1 recoverUntil=if_recover}
+private if_else_statement ::='else' sequential_statement_list {pin=1 recoverUntil=if_recover}
+private if_recover ::= ! ('end' | ';')
 
 
 
