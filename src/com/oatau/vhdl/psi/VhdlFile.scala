@@ -4,6 +4,7 @@ import com.intellij.extapi.psi.PsiFileBase
 import com.intellij.psi.FileViewProvider
 import com.oatau.vhdl.{VhdlFileType, VhdlLanguage}
 import com.intellij.openapi.fileTypes.FileType
+import com.oatau.vhdl.parser.psi.VEntity
 
 /**
  * User: Michael

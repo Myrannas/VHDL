@@ -14,8 +14,9 @@ import com.intellij.psi.tree.IFileElementType;
 import com.intellij.psi.tree.TokenSet;
 import com.oatau.vhdl.VhdlLanguage;
 import com.oatau.vhdl.lexer.VhdlLexer;
+import com.oatau.vhdl.lexer.VhdlTypes;
+import com.oatau.vhdl.parser.psi.TreeFactory;
 import com.oatau.vhdl.psi.VhdlFile;
-import com.oatau.vhdl.psi.VhdlTypes;
 import org.jetbrains.annotations.NotNull;
 
 /**
@@ -66,7 +67,7 @@ public class VhdlParserDefinition implements ParserDefinition {
     @NotNull
     @Override
     public PsiElement createElement(ASTNode astNode) {
-        return VhdlTypes.Factory.createElement(astNode);
+        return TreeFactory.createElement(astNode);
     }
 
     @Override

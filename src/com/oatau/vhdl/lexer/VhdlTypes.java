@@ -132,4 +132,6 @@ public interface VhdlTypes {
   IElementType WITH = new SimpleTokenType("with");
   IElementType XNOR = new SimpleTokenType("xnor");
   IElementType XOR = new SimpleTokenType("xor");
+
+
 }

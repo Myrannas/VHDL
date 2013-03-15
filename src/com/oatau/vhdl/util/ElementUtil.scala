@@ -4,8 +4,9 @@ import com.intellij.openapi.vfs.VirtualFile
 import com.intellij.openapi.module.Module
 import com.intellij.openapi.roots.ModuleRootManager
 import com.oatau.vhdl.VhdlFileType
-import com.oatau.vhdl.psi.{VhdlFile, VEntity}
 import com.intellij.psi.PsiManager
+import com.oatau.vhdl.psi.VhdlFile
+import com.oatau.vhdl.parser.psi.VEntity
 
 /**
  * User: Michael

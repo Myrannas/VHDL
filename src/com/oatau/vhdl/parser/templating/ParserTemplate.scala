@@ -21,6 +21,8 @@ trait ParserTemplate extends {
 
   def expectIn(elements: TokenSet, error: String = ""): ParserTemplate
 
+  def expectIn(elements: IElementType*): ParserTemplate
+
   def expectAndMarkSingle(element: IElementType, markAs: IElementType, error: String = ""): ParserTemplate
 
   def expectInAndMarkSingle(element: TokenSet, markAs: IElementType, error: String = ""): ParserTemplate
@@ -63,7 +65,9 @@ trait ParserTemplate extends {
   def doWhile(condition: (IElementType) => Boolean)(block: (ParserTemplate) => ParserTemplate): ParserTemplate
 
   /**
-   * Perform a switch on a statement, used for pattern matching
+   * Perform a switch on a statement, used for pattern matching.
+   *
+   * Does not advance the lexer state
    * @param block The code to execute, takes a tuple containing the element type and a parser template
    * @return The final parser template
    */

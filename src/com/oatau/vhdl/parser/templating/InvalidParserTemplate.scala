@@ -39,6 +39,8 @@ class InvalidParserTemplate(val builder: PsiBuilder) extends ParserTemplate {
 
   def expectIn(elements: TokenSet, error: String) = this
 
+  def expectIn(elements: IElementType*) = this
+
   def expectInAndMarkSingle(element: TokenSet, markAs: IElementType, error: String) = this
 
   def when(condition: (IElementType) => Boolean)(block: (ParserTemplate) => ParserTemplate) = this

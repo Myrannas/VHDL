@@ -64,6 +64,16 @@ class ValidParserTemplate(val builder: PsiBuilder) extends ParserTemplate {
     }
   }
 
+  def expectIn(elements: IElementType*) = {
+    if (!elements.contains(builder.getTokenType)) {
+      builder.error("Expected %s".format(elements.foldLeft("")(_+","+_)))
+      fail
+    } else {
+      builder.advanceLexer()
+      this
+    }
+  }
+
   def expectInAndMarkSingle(element: TokenSet, markAs: IElementType, error: String) = {
     if (!element.contains(builder.getTokenType)) {
       builder.error(if (error == "") "Expected %s".format(element.toString) else error)

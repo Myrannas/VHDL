@@ -2,11 +2,11 @@ package com.oatau.vhdl.complete
 
 import com.intellij.codeInsight.completion._
 import com.intellij.patterns.PlatformPatterns
-import com.oatau.vhdl.psi.{VEntity, VhdlFile, VhdlTypes}
 import com.oatau.vhdl.VhdlLanguage
 import com.intellij.util.ProcessingContext
 import com.oatau.vhdl.util.ElementUtil
 import com.intellij.openapi.module.ModuleUtilCore
+import com.oatau.vhdl.lexer.VhdlTypes
 
 /**
  * User: Michael
@@ -15,7 +15,7 @@ import com.intellij.openapi.module.ModuleUtilCore
  */
 class EntityNamesCompletionContributor extends CompletionContributor{
   extend(CompletionType.BASIC,
-    PlatformPatterns.psiElement().afterLeaf(PlatformPatterns.psiElement(VhdlTypes.T_OF)).withLanguage(VhdlLanguage.Language),
+    PlatformPatterns.psiElement().afterLeaf(PlatformPatterns.psiElement(VhdlTypes.OF)).withLanguage(VhdlLanguage.Language),
     new CompletionProvider[CompletionParameters]() {
 
     @Override

@@ -20,16 +20,16 @@ import com.oatau.vhdl.psi.VhdlTypes;
 WHITE_SPACE_CHAR=[\ \n\r\t\f]
 END_OF_LINE_COMMENT=("--")[^\r\n]*
 //BANG_COMMENT = ("!")[^\r\n]*
-//C_STYLE_COMMENT=("/*" [^"*"] {COMMENT_TAIL} ) | "/*"
-//DOC_COMMENT = ("/**" {COMMENT_TAIL} ) | "/**"
-//COMMENT_TAIL=( [^"*"]* ("*"+ [^"*""/"] )? )* ("*" | "*"+"/")?
+//C_STYLE_COMMENT=("/*" [^"*"] {COMMENTAIL} ) | "/*"
+//DOC_COMMENT = ("/**" {COMMENTAIL} ) | "/**"
+//COMMENTAIL=( [^"*"]* ("*"+ [^"*""/"] )? )* ("*" | "*"+"/")?
 IDENTIFIER = [a-zA-Z_][a-zA-Z0-9_]*
 NUM_LIT = [0-9_]+
 SIGNAL_LIT = "\'" [01] "\'"
 //HEX_LIT = 0x[0-9a-fA-F]+
 //REAL_LIT = ("-"\s*)? [0-9]+[.][0-9]+
 STR_LIT = "\"" ([^\"]|"^\"")* "\""
-//FORMAT_CODE = :#+(\.#+)?
+//FORMACODE = :#+(\.#+)?
 
 %state IN_VALUE
 %state IN_KEY_VALUE_SEPARATOR
@@ -37,132 +37,132 @@ STR_LIT = "\"" ([^\"]|"^\"")* "\""
 %%
 
 <YYINITIAL> {
-"entity" { yybegin(YYINITIAL); return VhdlTypes.T_ENTITY;}
-"architecture" { yybegin(YYINITIAL); return VhdlTypes.T_ARCHITECTURE;}
-"library" { yybegin(YYINITIAL); return VhdlTypes.T_LIBRARY;}
-"use" { yybegin(YYINITIAL); return VhdlTypes.T_USE;}
+"entity" { yybegin(YYINITIAL); return VhdlTypes.ENTITY;}
+"architecture" { yybegin(YYINITIAL); return VhdlTypes.ARCHITECTURE;}
+"library" { yybegin(YYINITIAL); return VhdlTypes.LIBRARY;}
+"use" { yybegin(YYINITIAL); return VhdlTypes.USE;}
 
 
-"of" { yybegin(YYINITIAL); return VhdlTypes.T_OF;}
-"begin" { yybegin(YYINITIAL); return VhdlTypes.T_BEGIN;}
-"is" { yybegin(YYINITIAL); return VhdlTypes.T_IS;}
-"." { yybegin(YYINITIAL); return VhdlTypes.T_DOT;}
+"of" { yybegin(YYINITIAL); return VhdlTypes.OF;}
+"begin" { yybegin(YYINITIAL); return VhdlTypes.BEGIN;}
+"is" { yybegin(YYINITIAL); return VhdlTypes.IS;}
+"." { yybegin(YYINITIAL); return VhdlTypes.DOT;}
 
-";" { yybegin(YYINITIAL); return VhdlTypes.T_SEMI;}
-":" { yybegin(YYINITIAL); return VhdlTypes.T_COLON;}
-"(" { yybegin(YYINITIAL); return VhdlTypes.T_LEFT_PAREN;}
-")" { yybegin(YYINITIAL); return VhdlTypes.T_RIGHT_PAREN;}
-"=" { yybegin(YYINITIAL); return VhdlTypes.T_EQU;}
+";" { yybegin(YYINITIAL); return VhdlTypes.SEMI;}
+":" { yybegin(YYINITIAL); return VhdlTypes.COLON;}
+"(" { yybegin(YYINITIAL); return VhdlTypes.LEFPAREN;}
+")" { yybegin(YYINITIAL); return VhdlTypes.RIGHPAREN;}
+"=" { yybegin(YYINITIAL); return VhdlTypes.EQU;}
 
-"+" { yybegin(YYINITIAL); return VhdlTypes.T_ADD;}
-"-" { yybegin(YYINITIAL); return VhdlTypes.T_SUB;}
-"/" { yybegin(YYINITIAL); return VhdlTypes.T_DIV;}
-"*" { yybegin(YYINITIAL); return VhdlTypes.T_MUL;}
-"and" { yybegin(YYINITIAL); return VhdlTypes.T_AND;}
-"or" { yybegin(YYINITIAL); return VhdlTypes.T_OR;}
-"nand" { yybegin(YYINITIAL); return VhdlTypes.T_NAND;}
-"nor" { yybegin(YYINITIAL); return VhdlTypes.T_NOR;}
-"xor" { yybegin(YYINITIAL); return VhdlTypes.T_XOR;}
-"xnor" { yybegin(YYINITIAL); return VhdlTypes.T_XNOR;}
-"sll" { yybegin(YYINITIAL); return VhdlTypes.T_SLL;}
-"srl" { yybegin(YYINITIAL); return VhdlTypes.T_SRL;}
-"sla" { yybegin(YYINITIAL); return VhdlTypes.T_SLA;}
-"sra" { yybegin(YYINITIAL); return VhdlTypes.T_SRA;}
-"rol" { yybegin(YYINITIAL); return VhdlTypes.T_ROL;}
-"ror" { yybegin(YYINITIAL); return VhdlTypes.T_ROR;}
+"+" { yybegin(YYINITIAL); return VhdlTypes.ADD;}
+"-" { yybegin(YYINITIAL); return VhdlTypes.SUB;}
+"/" { yybegin(YYINITIAL); return VhdlTypes.DIV;}
+"*" { yybegin(YYINITIAL); return VhdlTypes.MUL;}
+"and" { yybegin(YYINITIAL); return VhdlTypes.AND;}
+"or" { yybegin(YYINITIAL); return VhdlTypes.OR;}
+"nand" { yybegin(YYINITIAL); return VhdlTypes.NAND;}
+"nor" { yybegin(YYINITIAL); return VhdlTypes.NOR;}
+"xor" { yybegin(YYINITIAL); return VhdlTypes.XOR;}
+"xnor" { yybegin(YYINITIAL); return VhdlTypes.XNOR;}
+"sll" { yybegin(YYINITIAL); return VhdlTypes.SLL;}
+"srl" { yybegin(YYINITIAL); return VhdlTypes.SRL;}
+"sla" { yybegin(YYINITIAL); return VhdlTypes.SLA;}
+"sra" { yybegin(YYINITIAL); return VhdlTypes.SRA;}
+"rol" { yybegin(YYINITIAL); return VhdlTypes.ROL;}
+"ror" { yybegin(YYINITIAL); return VhdlTypes.ROR;}
 
-"**" { yybegin(YYINITIAL); return VhdlTypes.T_EXP;}
-"not" { yybegin(YYINITIAL); return VhdlTypes.T_NOT;}
-"abs" { yybegin(YYINITIAL); return VhdlTypes.T_ABS;}
-"mod" { yybegin(YYINITIAL); return VhdlTypes.T_MOD;}
-"rem" { yybegin(YYINITIAL); return VhdlTypes.T_REM;}
-"&" { yybegin(YYINITIAL); return VhdlTypes.T_CONCAT;}
-"/=" { yybegin(YYINITIAL); return VhdlTypes.T_NE;}
-"<" { yybegin(YYINITIAL); return VhdlTypes.T_LT;}
-">" { yybegin(YYINITIAL); return VhdlTypes.T_GT;}
-">=" { yybegin(YYINITIAL); return VhdlTypes.T_GTE;}
+"**" { yybegin(YYINITIAL); return VhdlTypes.EXP;}
+"not" { yybegin(YYINITIAL); return VhdlTypes.NOT;}
+"abs" { yybegin(YYINITIAL); return VhdlTypes.ABS;}
+"mod" { yybegin(YYINITIAL); return VhdlTypes.MOD;}
+"rem" { yybegin(YYINITIAL); return VhdlTypes.REM;}
+"&" { yybegin(YYINITIAL); return VhdlTypes.CONCAT;}
+"/=" { yybegin(YYINITIAL); return VhdlTypes.NE;}
+"<" { yybegin(YYINITIAL); return VhdlTypes.LT;}
+">" { yybegin(YYINITIAL); return VhdlTypes.GT;}
+">=" { yybegin(YYINITIAL); return VhdlTypes.GTE;}
 
-"process" { yybegin(YYINITIAL); return VhdlTypes.T_PROCESS;}
+"process" { yybegin(YYINITIAL); return VhdlTypes.PROCESS;}
 
-"port" { yybegin(YYINITIAL); return VhdlTypes.T_PORT;}
-"end" { yybegin(YYINITIAL); return VhdlTypes.T_END;}
-"when" { yybegin(YYINITIAL); return VhdlTypes.T_WHEN;}
-"else" { yybegin(YYINITIAL); return VhdlTypes.T_ELSE;}
-"others" { yybegin(YYINITIAL); return VhdlTypes.T_OTHERS;}
-"case" { yybegin(YYINITIAL); return VhdlTypes.T_CASE;}
-"next" { yybegin(YYINITIAL); return VhdlTypes.T_NEXT;}
-"exit" { yybegin(YYINITIAL); return VhdlTypes.T_EXIT;}
-"return" { yybegin(YYINITIAL); return VhdlTypes.T_RETURN;}
-"variable" { yybegin(YYINITIAL); return VhdlTypes.T_VARIABLE;}
-"block" { yybegin(YYINITIAL); return VhdlTypes.T_BLOCK;}
-"pure" { yybegin(YYINITIAL); return VhdlTypes.T_PURE;}
-"impure" { yybegin(YYINITIAL); return VhdlTypes.T_IMPURE;}
-"function" { yybegin(YYINITIAL); return VhdlTypes.T_FUNCTION;}
-"procedure" { yybegin(YYINITIAL); return VhdlTypes.T_PROCEDURE;}
-"postponed" { yybegin(YYINITIAL); return VhdlTypes.T_POSTPONED;}
-"component" { yybegin(YYINITIAL); return VhdlTypes.T_COMPONENT;}
-"assert" { yybegin(YYINITIAL); return VhdlTypes.T_ASSERT;}
-"report" { yybegin(YYINITIAL); return VhdlTypes.T_REPORT;}
-"severity" { yybegin(YYINITIAL); return VhdlTypes.T_SEVERITY;}
-"configuration" { yybegin(YYINITIAL); return VhdlTypes.T_CONFIGURATION;}
-"constraint" { yybegin(YYINITIAL); return VhdlTypes.T_CONSTRAINT;}
-"array" { yybegin(YYINITIAL); return VhdlTypes.T_ARRAY;}
-"package" { yybegin(YYINITIAL); return VhdlTypes.T_PACKAGE;}
-"type" { yybegin(YYINITIAL); return VhdlTypes.T_TYPE;}
-"subtype" { yybegin(YYINITIAL); return VhdlTypes.T_SUBTYPE;}
-"until" { yybegin(YYINITIAL); return VhdlTypes.T_UNTIL;}
-"constant" { yybegin(YYINITIAL); return VhdlTypes.T_CONSTANT;}
-"transport" { yybegin(YYINITIAL); return VhdlTypes.T_TRANSPORT;}
-"reject" { yybegin(YYINITIAL); return VhdlTypes.T_REJECT;}
-"group" { yybegin(YYINITIAL); return VhdlTypes.T_GROUP;}
-"generic" { yybegin(YYINITIAL); return VhdlTypes.T_GENERIC;}
+"port" { yybegin(YYINITIAL); return VhdlTypes.PORT;}
+"end" { yybegin(YYINITIAL); return VhdlTypes.END;}
+"when" { yybegin(YYINITIAL); return VhdlTypes.WHEN;}
+"else" { yybegin(YYINITIAL); return VhdlTypes.ELSE;}
+"others" { yybegin(YYINITIAL); return VhdlTypes.OTHERS;}
+"case" { yybegin(YYINITIAL); return VhdlTypes.CASE;}
+"next" { yybegin(YYINITIAL); return VhdlTypes.NEXT;}
+"exit" { yybegin(YYINITIAL); return VhdlTypes.EXIT;}
+"return" { yybegin(YYINITIAL); return VhdlTypes.RETURN;}
+"variable" { yybegin(YYINITIAL); return VhdlTypes.VARIABLE;}
+"block" { yybegin(YYINITIAL); return VhdlTypes.BLOCK;}
+"pure" { yybegin(YYINITIAL); return VhdlTypes.PURE;}
+"impure" { yybegin(YYINITIAL); return VhdlTypes.IMPURE;}
+"function" { yybegin(YYINITIAL); return VhdlTypes.FUNCTION;}
+"procedure" { yybegin(YYINITIAL); return VhdlTypes.PROCEDURE;}
+"postponed" { yybegin(YYINITIAL); return VhdlTypes.POSTPONED;}
+"component" { yybegin(YYINITIAL); return VhdlTypes.COMPONENT;}
+"assert" { yybegin(YYINITIAL); return VhdlTypes.ASSERT;}
+"report" { yybegin(YYINITIAL); return VhdlTypes.REPORT;}
+"severity" { yybegin(YYINITIAL); return VhdlTypes.SEVERITY;}
+"configuration" { yybegin(YYINITIAL); return VhdlTypes.CONFIGURATION;}
+"constraint" { yybegin(YYINITIAL); return VhdlTypes.CONSTRAINT;}
+"array" { yybegin(YYINITIAL); return VhdlTypes.ARRAY;}
+"package" { yybegin(YYINITIAL); return VhdlTypes.PACKAGE;}
+"type" { yybegin(YYINITIAL); return VhdlTypes.TYPE;}
+"subtype" { yybegin(YYINITIAL); return VhdlTypes.SUBTYPE;}
+"until" { yybegin(YYINITIAL); return VhdlTypes.UNTIL;}
+"constant" { yybegin(YYINITIAL); return VhdlTypes.CONSTANT;}
+"transport" { yybegin(YYINITIAL); return VhdlTypes.TRANSPORT;}
+"reject" { yybegin(YYINITIAL); return VhdlTypes.REJECT;}
+"group" { yybegin(YYINITIAL); return VhdlTypes.GROUP;}
+"generic" { yybegin(YYINITIAL); return VhdlTypes.GENERIC;}
 
-"loop" { yybegin(YYINITIAL); return VhdlTypes.T_LOOP;}
-"for" { yybegin(YYINITIAL); return VhdlTypes.T_FOR;}
-"while" { yybegin(YYINITIAL); return VhdlTypes.T_WHILE;}
-"then" { yybegin(YYINITIAL); return VhdlTypes.T_THEN;}
-"elsif" { yybegin(YYINITIAL); return VhdlTypes.T_ELSIF;}
-"if" { yybegin(YYINITIAL); return VhdlTypes.T_IF;}
-"open" { yybegin(YYINITIAL); return VhdlTypes.T_OPEN;}
-"access" { yybegin(YYINITIAL); return VhdlTypes.T_ACCESS;}
-"alias" { yybegin(YYINITIAL); return VhdlTypes.T_ALIAS;}
-"new" { yybegin(YYINITIAL); return VhdlTypes.T_NEW;}
-"attribute" { yybegin(YYINITIAL); return VhdlTypes.T_ATTRIBUTE;}
-"inertial" { yybegin(YYINITIAL); return VhdlTypes.T_INERTIAL;}
-"buffer" { yybegin(YYINITIAL); return VhdlTypes.T_BUFFER;}
-"linkage" { yybegin(YYINITIAL); return VhdlTypes.T_LINKAGE;}
-"with" { yybegin(YYINITIAL); return VhdlTypes.T_WITH;}
-"select" { yybegin(YYINITIAL); return VhdlTypes.T_SELECT;}
-"generate" { yybegin(YYINITIAL); return VhdlTypes.T_GENERATE;}
-"map" { yybegin(YYINITIAL); return VhdlTypes.T_MAP;}
-"signal" { yybegin(YYINITIAL); return VhdlTypes.T_SIGNAL;}
-"literal" { yybegin(YYINITIAL); return VhdlTypes.T_LITERAL;}
-"label" { yybegin(YYINITIAL); return VhdlTypes.T_LABEL;}
-"file" { yybegin(YYINITIAL); return VhdlTypes.T_FILE;}
-"to" { yybegin(YYINITIAL); return VhdlTypes.T_TO;}
-"downto" { yybegin(YYINITIAL); return VhdlTypes.T_DOWNTO;}
-"disconnect" { yybegin(YYINITIAL); return VhdlTypes.T_DISCONNECT;}
-"after" { yybegin(YYINITIAL); return VhdlTypes.T_AFTER;}
-"guarded" { yybegin(YYINITIAL); return VhdlTypes.T_GUARDED;}
-"body" { yybegin(YYINITIAL); return VhdlTypes.T_BODY;}
-"register" { yybegin(YYINITIAL); return VhdlTypes.T_REGISTER;}
-"bus" { yybegin(YYINITIAL); return VhdlTypes.T_BUS;}
-"unaffected" { yybegin(YYINITIAL); return VhdlTypes.T_UNAFFECTED;}
-"shared" { yybegin(YYINITIAL); return VhdlTypes.T_SHARED;}
-"all" { yybegin(YYINITIAL); return VhdlTypes.T_ALL;}
-"<>" { yybegin(YYINITIAL); return VhdlTypes.T_NE;}
-"," { yybegin(YYINITIAL); return VhdlTypes.T_CMA;}
-"on" { yybegin(YYINITIAL); return VhdlTypes.T_ON;}
+"loop" { yybegin(YYINITIAL); return VhdlTypes.LOOP;}
+"for" { yybegin(YYINITIAL); return VhdlTypes.FOR;}
+"while" { yybegin(YYINITIAL); return VhdlTypes.WHILE;}
+"then" { yybegin(YYINITIAL); return VhdlTypes.THEN;}
+"elsif" { yybegin(YYINITIAL); return VhdlTypes.ELSIF;}
+"if" { yybegin(YYINITIAL); return VhdlTypes.IF;}
+"open" { yybegin(YYINITIAL); return VhdlTypes.OPEN;}
+"access" { yybegin(YYINITIAL); return VhdlTypes.ACCESS;}
+"alias" { yybegin(YYINITIAL); return VhdlTypes.ALIAS;}
+"new" { yybegin(YYINITIAL); return VhdlTypes.NEW;}
+"attribute" { yybegin(YYINITIAL); return VhdlTypes.ATTRIBUTE;}
+"inertial" { yybegin(YYINITIAL); return VhdlTypes.INERTIAL;}
+"buffer" { yybegin(YYINITIAL); return VhdlTypes.BUFFER;}
+"linkage" { yybegin(YYINITIAL); return VhdlTypes.LINKAGE;}
+"with" { yybegin(YYINITIAL); return VhdlTypes.WITH;}
+"select" { yybegin(YYINITIAL); return VhdlTypes.SELECT;}
+"generate" { yybegin(YYINITIAL); return VhdlTypes.GENERATE;}
+"map" { yybegin(YYINITIAL); return VhdlTypes.MAP;}
+"signal" { yybegin(YYINITIAL); return VhdlTypes.SIGNAL;}
+"literal" { yybegin(YYINITIAL); return VhdlTypes.LITERAL;}
+"label" { yybegin(YYINITIAL); return VhdlTypes.LABEL;}
+"file" { yybegin(YYINITIAL); return VhdlTypes.FILE;}
+"to" { yybegin(YYINITIAL); return VhdlTypes.TO;}
+"downto" { yybegin(YYINITIAL); return VhdlTypes.DOWNTO;}
+"disconnect" { yybegin(YYINITIAL); return VhdlTypes.DISCONNECT;}
+"after" { yybegin(YYINITIAL); return VhdlTypes.AFTER;}
+"guarded" { yybegin(YYINITIAL); return VhdlTypes.GUARDED;}
+"body" { yybegin(YYINITIAL); return VhdlTypes.BODY;}
+"register" { yybegin(YYINITIAL); return VhdlTypes.REGISTER;}
+"bus" { yybegin(YYINITIAL); return VhdlTypes.BUS;}
+"unaffected" { yybegin(YYINITIAL); return VhdlTypes.UNAFFECTED;}
+"shared" { yybegin(YYINITIAL); return VhdlTypes.SHARED;}
+"all" { yybegin(YYINITIAL); return VhdlTypes.ALL;}
+"<>" { yybegin(YYINITIAL); return VhdlTypes.NE;}
+"," { yybegin(YYINITIAL); return VhdlTypes.CMA;}
+"on" { yybegin(YYINITIAL); return VhdlTypes.ON;}
 
-"null" { yybegin(YYINITIAL); return VhdlTypes.T_NULL;}
-"in" { yybegin(YYINITIAL); return VhdlTypes.T_IN;}
-"out" { yybegin(YYINITIAL); return VhdlTypes.T_OUT;}
-"inout" { yybegin(YYINITIAL); return VhdlTypes.T_INOUT;}
-"units" { yybegin(YYINITIAL); return VhdlTypes.T_UNITS;}
+"null" { yybegin(YYINITIAL); return VhdlTypes.NULL;}
+"in" { yybegin(YYINITIAL); return VhdlTypes.IN;}
+"out" { yybegin(YYINITIAL); return VhdlTypes.OUT;}
+"inout" { yybegin(YYINITIAL); return VhdlTypes.INOUT;}
+"units" { yybegin(YYINITIAL); return VhdlTypes.UNITS;}
 
-"<=" { yybegin(YYINITIAL); return VhdlTypes.T_NOBLOCK_ASSIGN;}
-":=" { yybegin(YYINITIAL); return VhdlTypes.T_BLOCK_ASSIGN;}
-"=>" { yybegin(YYINITIAL); return VhdlTypes.T_RARR;}
+"<=" { yybegin(YYINITIAL); return VhdlTypes.NOBLOCK_ASSIGN;}
+":=" { yybegin(YYINITIAL); return VhdlTypes.BLOCK_ASSIGN;}
+"=>" { yybegin(YYINITIAL); return VhdlTypes.RARR;}
 
     {STR_LIT}                     { yybegin(YYINITIAL); return VhdlTypes.STRLIT; }
     {IDENTIFIER}                 { yybegin(YYINITIAL); return VhdlTypes.ID; }

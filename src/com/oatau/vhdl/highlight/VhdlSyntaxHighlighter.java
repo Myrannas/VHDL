@@ -7,7 +7,7 @@ import com.intellij.openapi.fileTypes.SyntaxHighlighterBase;
 import com.intellij.psi.tree.IElementType;
 import com.intellij.psi.tree.TokenSet;
 import com.oatau.vhdl.lexer.VhdlLexer;
-import com.oatau.vhdl.psi.VhdlTypes;
+import com.oatau.vhdl.lexer.VhdlTypes;
 import org.jetbrains.annotations.NotNull;
 
 /**
@@ -27,9 +27,9 @@ public class VhdlSyntaxHighlighter extends SyntaxHighlighterBase {
 
     private static final TextAttributesKey[] EMPTY_KEYS = new TextAttributesKey[0];
 
-    private static TokenSet keywords = TokenSet.create(VhdlTypes.T_ENTITY, VhdlTypes.T_IS, VhdlTypes.T_END, VhdlTypes.T_IN, VhdlTypes.T_INOUT,
-            VhdlTypes.T_OUT, VhdlTypes.T_LIBRARY, VhdlTypes.T_USE, VhdlTypes.T_ARCHITECTURE, VhdlTypes.T_BEGIN, VhdlTypes.T_OF, VhdlTypes.T_PORT,
-            VhdlTypes.T_PROCESS, VhdlTypes.T_IF, VhdlTypes.T_CASE, VhdlTypes.T_ELSIF, VhdlTypes.T_ELSE, VhdlTypes.T_SIGNAL, VhdlTypes.T_THEN);
+    private static TokenSet keywords = TokenSet.create(VhdlTypes.ENTITY, VhdlTypes.IS, VhdlTypes.END, VhdlTypes.IN, VhdlTypes.INOUT,
+            VhdlTypes.OUT, VhdlTypes.LIBRARY, VhdlTypes.USE, VhdlTypes.ARCHITECTURE, VhdlTypes.BEGIN, VhdlTypes.OF, VhdlTypes.PORT,
+            VhdlTypes.PROCESS, VhdlTypes.IF, VhdlTypes.CASE, VhdlTypes.ELSIF, VhdlTypes.ELSE, VhdlTypes.SIGNAL, VhdlTypes.THEN);
 
     @NotNull
     @Override

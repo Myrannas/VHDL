@@ -5,7 +5,6 @@ package com.oatau.vhdl.lexer;
 import com.intellij.lexer.FlexLexer;
 import com.intellij.psi.tree.IElementType;
 import com.intellij.psi.TokenType;
-import com.oatau.vhdl.psi.VhdlTypes;
 
 
 /**
@@ -994,31 +993,31 @@ class _VhdlLexer implements FlexLexer {
 
       switch (zzAction < 0 ? zzAction : ZZ_ACTION[zzAction]) {
         case 59: 
-          { yybegin(YYINITIAL); return VhdlTypes.T_NAND;
+          { yybegin(YYINITIAL); return VhdlTypes.NAND;
           }
         case 123: break;
         case 78: 
-          { yybegin(YYINITIAL); return VhdlTypes.T_UNTIL;
+          { yybegin(YYINITIAL); return VhdlTypes.UNTIL;
           }
         case 124: break;
         case 111: 
-          { yybegin(YYINITIAL); return VhdlTypes.T_GENERATE;
+          { yybegin(YYINITIAL); return VhdlTypes.GENERATE;
           }
         case 125: break;
         case 102: 
-          { yybegin(YYINITIAL); return VhdlTypes.T_GENERIC;
+          { yybegin(YYINITIAL); return VhdlTypes.GENERIC;
           }
         case 126: break;
         case 95: 
-          { yybegin(YYINITIAL); return VhdlTypes.T_SHARED;
+          { yybegin(YYINITIAL); return VhdlTypes.SHARED;
           }
         case 127: break;
         case 46: 
-          { yybegin(YYINITIAL); return VhdlTypes.T_BUS;
+          { yybegin(YYINITIAL); return VhdlTypes.BUS;
           }
         case 128: break;
         case 81: 
-          { yybegin(YYINITIAL); return VhdlTypes.T_BEGIN;
+          { yybegin(YYINITIAL); return VhdlTypes.BEGIN;
           }
         case 129: break;
         case 5: 
@@ -1026,7 +1025,7 @@ class _VhdlLexer implements FlexLexer {
           }
         case 130: break;
         case 76: 
-          { yybegin(YYINITIAL); return VhdlTypes.T_ALIAS;
+          { yybegin(YYINITIAL); return VhdlTypes.ALIAS;
           }
         case 131: break;
         case 19: 
@@ -1034,11 +1033,11 @@ class _VhdlLexer implements FlexLexer {
           }
         case 132: break;
         case 106: 
-          { yybegin(YYINITIAL); return VhdlTypes.T_INERTIAL;
+          { yybegin(YYINITIAL); return VhdlTypes.INERTIAL;
           }
         case 133: break;
         case 120: 
-          { yybegin(YYINITIAL); return VhdlTypes.T_DISCONNECT;
+          { yybegin(YYINITIAL); return VhdlTypes.DISCONNECT;
           }
         case 134: break;
         case 4: 
@@ -1046,111 +1045,111 @@ class _VhdlLexer implements FlexLexer {
           }
         case 135: break;
         case 6: 
-          { yybegin(YYINITIAL); return VhdlTypes.T_DOT;
+          { yybegin(YYINITIAL); return VhdlTypes.DOT;
           }
         case 136: break;
         case 105: 
-          { yybegin(YYINITIAL); return VhdlTypes.T_PROCESS;
+          { yybegin(YYINITIAL); return VhdlTypes.PROCESS;
           }
         case 137: break;
         case 72: 
-          { yybegin(YYINITIAL); return VhdlTypes.T_WHEN;
+          { yybegin(YYINITIAL); return VhdlTypes.WHEN;
           }
         case 138: break;
         case 9: 
-          { yybegin(YYINITIAL); return VhdlTypes.T_LEFT_PAREN;
+          { yybegin(YYINITIAL); return VhdlTypes.LEFPAREN;
           }
         case 139: break;
         case 68: 
-          { yybegin(YYINITIAL); return VhdlTypes.T_XNOR;
+          { yybegin(YYINITIAL); return VhdlTypes.XNOR;
           }
         case 140: break;
         case 21: 
-          { yybegin(YYINITIAL); return VhdlTypes.T_TO;
+          { yybegin(YYINITIAL); return VhdlTypes.TO;
           }
         case 141: break;
         case 96: 
-          { yybegin(YYINITIAL); return VhdlTypes.T_OTHERS;
+          { yybegin(YYINITIAL); return VhdlTypes.OTHERS;
           }
         case 142: break;
         case 58: 
-          { yybegin(YYINITIAL); return VhdlTypes.T_NEXT;
+          { yybegin(YYINITIAL); return VhdlTypes.NEXT;
           }
         case 143: break;
         case 109: 
-          { yybegin(YYINITIAL); return VhdlTypes.T_SEVERITY;
+          { yybegin(YYINITIAL); return VhdlTypes.SEVERITY;
           }
         case 144: break;
         case 75: 
-          { yybegin(YYINITIAL); return VhdlTypes.T_ARRAY;
+          { yybegin(YYINITIAL); return VhdlTypes.ARRAY;
           }
         case 145: break;
         case 84: 
-          { yybegin(YYINITIAL); return VhdlTypes.T_WHILE;
+          { yybegin(YYINITIAL); return VhdlTypes.WHILE;
           }
         case 146: break;
         case 110: 
-          { yybegin(YYINITIAL); return VhdlTypes.T_FUNCTION;
+          { yybegin(YYINITIAL); return VhdlTypes.FUNCTION;
           }
         case 147: break;
         case 121: 
-          { yybegin(YYINITIAL); return VhdlTypes.T_ARCHITECTURE;
+          { yybegin(YYINITIAL); return VhdlTypes.ARCHITECTURE;
           }
         case 148: break;
         case 36: 
-          { yybegin(YYINITIAL); return VhdlTypes.T_NEW;
+          { yybegin(YYINITIAL); return VhdlTypes.NEW;
           }
         case 149: break;
         case 117: 
-          { yybegin(YYINITIAL); return VhdlTypes.T_POSTPONED;
+          { yybegin(YYINITIAL); return VhdlTypes.POSTPONED;
           }
         case 150: break;
         case 103: 
-          { yybegin(YYINITIAL); return VhdlTypes.T_GUARDED;
+          { yybegin(YYINITIAL); return VhdlTypes.GUARDED;
           }
         case 151: break;
         case 51: 
-          { yybegin(YYINITIAL); return VhdlTypes.T_OUT;
+          { yybegin(YYINITIAL); return VhdlTypes.OUT;
           }
         case 152: break;
         case 91: 
-          { yybegin(YYINITIAL); return VhdlTypes.T_REJECT;
+          { yybegin(YYINITIAL); return VhdlTypes.REJECT;
           }
         case 153: break;
         case 79: 
-          { yybegin(YYINITIAL); return VhdlTypes.T_UNITS;
+          { yybegin(YYINITIAL); return VhdlTypes.UNITS;
           }
         case 154: break;
         case 18: 
-          { yybegin(YYINITIAL); return VhdlTypes.T_CMA;
+          { yybegin(YYINITIAL); return VhdlTypes.CMA;
           }
         case 155: break;
         case 115: 
-          { yybegin(YYINITIAL); return VhdlTypes.T_COMPONENT;
+          { yybegin(YYINITIAL); return VhdlTypes.COMPONENT;
           }
         case 156: break;
         case 3: 
-          { yybegin(YYINITIAL); return VhdlTypes.T_SUB;
+          { yybegin(YYINITIAL); return VhdlTypes.SUB;
           }
         case 157: break;
         case 70: 
-          { yybegin(YYINITIAL); return VhdlTypes.T_PORT;
+          { yybegin(YYINITIAL); return VhdlTypes.PORT;
           }
         case 158: break;
         case 89: 
-          { yybegin(YYINITIAL); return VhdlTypes.T_RETURN;
+          { yybegin(YYINITIAL); return VhdlTypes.RETURN;
           }
         case 159: break;
         case 61: 
-          { yybegin(YYINITIAL); return VhdlTypes.T_TYPE;
+          { yybegin(YYINITIAL); return VhdlTypes.TYPE;
           }
         case 160: break;
         case 8: 
-          { yybegin(YYINITIAL); return VhdlTypes.T_COLON;
+          { yybegin(YYINITIAL); return VhdlTypes.COLON;
           }
         case 161: break;
         case 60: 
-          { yybegin(YYINITIAL); return VhdlTypes.T_NULL;
+          { yybegin(YYINITIAL); return VhdlTypes.NULL;
           }
         case 162: break;
         case 2: 
@@ -1158,95 +1157,95 @@ class _VhdlLexer implements FlexLexer {
           }
         case 163: break;
         case 28: 
-          { yybegin(YYINITIAL); return VhdlTypes.T_BLOCK_ASSIGN;
+          { yybegin(YYINITIAL); return VhdlTypes.BLOCK_ASSIGN;
           }
         case 164: break;
         case 88: 
-          { yybegin(YYINITIAL); return VhdlTypes.T_ASSERT;
+          { yybegin(YYINITIAL); return VhdlTypes.ASSERT;
           }
         case 165: break;
         case 74: 
-          { yybegin(YYINITIAL); return VhdlTypes.T_INOUT;
+          { yybegin(YYINITIAL); return VhdlTypes.INOUT;
           }
         case 166: break;
         case 104: 
-          { yybegin(YYINITIAL); return VhdlTypes.T_PACKAGE;
+          { yybegin(YYINITIAL); return VhdlTypes.PACKAGE;
           }
         case 167: break;
         case 99: 
-          { yybegin(YYINITIAL); return VhdlTypes.T_LITERAL;
+          { yybegin(YYINITIAL); return VhdlTypes.LITERAL;
           }
         case 168: break;
         case 114: 
-          { yybegin(YYINITIAL); return VhdlTypes.T_ATTRIBUTE;
+          { yybegin(YYINITIAL); return VhdlTypes.ATTRIBUTE;
           }
         case 169: break;
         case 86: 
-          { yybegin(YYINITIAL); return VhdlTypes.T_IMPURE;
+          { yybegin(YYINITIAL); return VhdlTypes.IMPURE;
           }
         case 170: break;
         case 7: 
-          { yybegin(YYINITIAL); return VhdlTypes.T_SEMI;
+          { yybegin(YYINITIAL); return VhdlTypes.SEMI;
           }
         case 171: break;
         case 97: 
-          { yybegin(YYINITIAL); return VhdlTypes.T_DOWNTO;
+          { yybegin(YYINITIAL); return VhdlTypes.DOWNTO;
           }
         case 172: break;
         case 37: 
-          { yybegin(YYINITIAL); return VhdlTypes.T_NOT;
+          { yybegin(YYINITIAL); return VhdlTypes.NOT;
           }
         case 173: break;
         case 108: 
-          { yybegin(YYINITIAL); return VhdlTypes.T_CONSTANT;
+          { yybegin(YYINITIAL); return VhdlTypes.CONSTANT;
           }
         case 174: break;
         case 40: 
-          { yybegin(YYINITIAL); return VhdlTypes.T_ALL;
+          { yybegin(YYINITIAL); return VhdlTypes.ALL;
           }
         case 175: break;
         case 54: 
-          { yybegin(YYINITIAL); return VhdlTypes.T_MAP;
+          { yybegin(YYINITIAL); return VhdlTypes.MAP;
           }
         case 176: break;
         case 14: 
-          { yybegin(YYINITIAL); return VhdlTypes.T_MUL;
+          { yybegin(YYINITIAL); return VhdlTypes.MUL;
           }
         case 177: break;
         case 25: 
-          { yybegin(YYINITIAL); return VhdlTypes.T_ON;
+          { yybegin(YYINITIAL); return VhdlTypes.ON;
           }
         case 178: break;
         case 33: 
-          { yybegin(YYINITIAL); return VhdlTypes.T_GTE;
+          { yybegin(YYINITIAL); return VhdlTypes.GTE;
           }
         case 179: break;
         case 52: 
-          { yybegin(YYINITIAL); return VhdlTypes.T_FOR;
+          { yybegin(YYINITIAL); return VhdlTypes.FOR;
           }
         case 180: break;
         case 47: 
-          { yybegin(YYINITIAL); return VhdlTypes.T_SRA;
+          { yybegin(YYINITIAL); return VhdlTypes.SRA;
           }
         case 181: break;
         case 31: 
-          { yybegin(YYINITIAL); return VhdlTypes.T_EXP;
+          { yybegin(YYINITIAL); return VhdlTypes.EXP;
           }
         case 182: break;
         case 77: 
-          { yybegin(YYINITIAL); return VhdlTypes.T_AFTER;
+          { yybegin(YYINITIAL); return VhdlTypes.AFTER;
           }
         case 183: break;
         case 65: 
-          { yybegin(YYINITIAL); return VhdlTypes.T_BODY;
+          { yybegin(YYINITIAL); return VhdlTypes.BODY;
           }
         case 184: break;
         case 112: 
-          { yybegin(YYINITIAL); return VhdlTypes.T_VARIABLE;
+          { yybegin(YYINITIAL); return VhdlTypes.VARIABLE;
           }
         case 185: break;
         case 92: 
-          { yybegin(YYINITIAL); return VhdlTypes.T_BUFFER;
+          { yybegin(YYINITIAL); return VhdlTypes.BUFFER;
           }
         case 186: break;
         case 1: 
@@ -1254,11 +1253,11 @@ class _VhdlLexer implements FlexLexer {
           }
         case 187: break;
         case 16: 
-          { yybegin(YYINITIAL); return VhdlTypes.T_LT;
+          { yybegin(YYINITIAL); return VhdlTypes.LT;
           }
         case 188: break;
         case 93: 
-          { yybegin(YYINITIAL); return VhdlTypes.T_SELECT;
+          { yybegin(YYINITIAL); return VhdlTypes.SELECT;
           }
         case 189: break;
         case 20: 
@@ -1266,187 +1265,187 @@ class _VhdlLexer implements FlexLexer {
           }
         case 190: break;
         case 101: 
-          { yybegin(YYINITIAL); return VhdlTypes.T_SUBTYPE;
+          { yybegin(YYINITIAL); return VhdlTypes.SUBTYPE;
           }
         case 191: break;
         case 67: 
-          { yybegin(YYINITIAL); return VhdlTypes.T_FILE;
+          { yybegin(YYINITIAL); return VhdlTypes.FILE;
           }
         case 192: break;
         case 82: 
-          { yybegin(YYINITIAL); return VhdlTypes.T_BLOCK;
+          { yybegin(YYINITIAL); return VhdlTypes.BLOCK;
           }
         case 193: break;
         case 41: 
-          { yybegin(YYINITIAL); return VhdlTypes.T_ABS;
+          { yybegin(YYINITIAL); return VhdlTypes.ABS;
           }
         case 194: break;
         case 119: 
-          { yybegin(YYINITIAL); return VhdlTypes.T_UNAFFECTED;
+          { yybegin(YYINITIAL); return VhdlTypes.UNAFFECTED;
           }
         case 195: break;
         case 32: 
-          { yybegin(YYINITIAL); return VhdlTypes.T_NOBLOCK_ASSIGN;
+          { yybegin(YYINITIAL); return VhdlTypes.NOBLOCK_ASSIGN;
           }
         case 196: break;
         case 56: 
-          { yybegin(YYINITIAL); return VhdlTypes.T_ELSE;
+          { yybegin(YYINITIAL); return VhdlTypes.ELSE;
           }
         case 197: break;
         case 22: 
-          { yybegin(YYINITIAL); return VhdlTypes.T_IN;
+          { yybegin(YYINITIAL); return VhdlTypes.IN;
           }
         case 198: break;
         case 71: 
-          { yybegin(YYINITIAL); return VhdlTypes.T_WITH;
+          { yybegin(YYINITIAL); return VhdlTypes.WITH;
           }
         case 199: break;
         case 39: 
-          { yybegin(YYINITIAL); return VhdlTypes.T_AND;
+          { yybegin(YYINITIAL); return VhdlTypes.AND;
           }
         case 200: break;
         case 80: 
-          { yybegin(YYINITIAL); return VhdlTypes.T_LABEL;
+          { yybegin(YYINITIAL); return VhdlTypes.LABEL;
           }
         case 201: break;
         case 49: 
-          { yybegin(YYINITIAL); return VhdlTypes.T_SLA;
+          { yybegin(YYINITIAL); return VhdlTypes.SLA;
           }
         case 202: break;
         case 107: 
-          { yybegin(YYINITIAL); return VhdlTypes.T_REGISTER;
+          { yybegin(YYINITIAL); return VhdlTypes.REGISTER;
           }
         case 203: break;
         case 62: 
-          { yybegin(YYINITIAL); return VhdlTypes.T_THEN;
+          { yybegin(YYINITIAL); return VhdlTypes.THEN;
           }
         case 204: break;
         case 38: 
-          { yybegin(YYINITIAL); return VhdlTypes.T_NOR;
+          { yybegin(YYINITIAL); return VhdlTypes.NOR;
           }
         case 205: break;
         case 15: 
-          { yybegin(YYINITIAL); return VhdlTypes.T_CONCAT;
+          { yybegin(YYINITIAL); return VhdlTypes.CONCAT;
           }
         case 206: break;
         case 113: 
-          { yybegin(YYINITIAL); return VhdlTypes.T_TRANSPORT;
+          { yybegin(YYINITIAL); return VhdlTypes.TRANSPORT;
           }
         case 207: break;
         case 48: 
-          { yybegin(YYINITIAL); return VhdlTypes.T_SRL;
+          { yybegin(YYINITIAL); return VhdlTypes.SRL;
           }
         case 208: break;
         case 63: 
-          { yybegin(YYINITIAL); return VhdlTypes.T_CASE;
+          { yybegin(YYINITIAL); return VhdlTypes.CASE;
           }
         case 209: break;
         case 17: 
-          { yybegin(YYINITIAL); return VhdlTypes.T_GT;
+          { yybegin(YYINITIAL); return VhdlTypes.GT;
           }
         case 210: break;
         case 64: 
-          { yybegin(YYINITIAL); return VhdlTypes.T_LOOP;
+          { yybegin(YYINITIAL); return VhdlTypes.LOOP;
           }
         case 211: break;
         case 98: 
-          { yybegin(YYINITIAL); return VhdlTypes.T_LINKAGE;
+          { yybegin(YYINITIAL); return VhdlTypes.LINKAGE;
           }
         case 212: break;
         case 27: 
-          { yybegin(YYINITIAL); return VhdlTypes.T_OF;
+          { yybegin(YYINITIAL); return VhdlTypes.OF;
           }
         case 213: break;
         case 116: 
-          { yybegin(YYINITIAL); return VhdlTypes.T_PROCEDURE;
+          { yybegin(YYINITIAL); return VhdlTypes.PROCEDURE;
           }
         case 214: break;
         case 94: 
-          { yybegin(YYINITIAL); return VhdlTypes.T_SIGNAL;
+          { yybegin(YYINITIAL); return VhdlTypes.SIGNAL;
           }
         case 215: break;
         case 35: 
-          { yybegin(YYINITIAL); return VhdlTypes.T_END;
+          { yybegin(YYINITIAL); return VhdlTypes.END;
           }
         case 216: break;
         case 10: 
-          { yybegin(YYINITIAL); return VhdlTypes.T_RIGHT_PAREN;
+          { yybegin(YYINITIAL); return VhdlTypes.RIGHPAREN;
           }
         case 217: break;
         case 44: 
-          { yybegin(YYINITIAL); return VhdlTypes.T_ROL;
+          { yybegin(YYINITIAL); return VhdlTypes.ROL;
           }
         case 218: break;
         case 85: 
-          { yybegin(YYINITIAL); return VhdlTypes.T_ENTITY;
+          { yybegin(YYINITIAL); return VhdlTypes.ENTITY;
           }
         case 219: break;
         case 73: 
-          { yybegin(YYINITIAL); return VhdlTypes.T_ELSIF;
+          { yybegin(YYINITIAL); return VhdlTypes.ELSIF;
           }
         case 220: break;
         case 43: 
-          { yybegin(YYINITIAL); return VhdlTypes.T_ROR;
+          { yybegin(YYINITIAL); return VhdlTypes.ROR;
           }
         case 221: break;
         case 26: 
-          { yybegin(YYINITIAL); return VhdlTypes.T_OR;
+          { yybegin(YYINITIAL); return VhdlTypes.OR;
           }
         case 222: break;
         case 29: 
-          { yybegin(YYINITIAL); return VhdlTypes.T_RARR;
+          { yybegin(YYINITIAL); return VhdlTypes.RARR;
           }
         case 223: break;
         case 23: 
-          { yybegin(YYINITIAL); return VhdlTypes.T_IS;
+          { yybegin(YYINITIAL); return VhdlTypes.IS;
           }
         case 224: break;
         case 57: 
-          { yybegin(YYINITIAL); return VhdlTypes.T_EXIT;
+          { yybegin(YYINITIAL); return VhdlTypes.EXIT;
           }
         case 225: break;
         case 69: 
-          { yybegin(YYINITIAL); return VhdlTypes.T_PURE;
+          { yybegin(YYINITIAL); return VhdlTypes.PURE;
           }
         case 226: break;
         case 66: 
-          { yybegin(YYINITIAL); return VhdlTypes.T_OPEN;
+          { yybegin(YYINITIAL); return VhdlTypes.OPEN;
           }
         case 227: break;
         case 45: 
-          { yybegin(YYINITIAL); return VhdlTypes.T_USE;
+          { yybegin(YYINITIAL); return VhdlTypes.USE;
           }
         case 228: break;
         case 118: 
-          { yybegin(YYINITIAL); return VhdlTypes.T_CONSTRAINT;
+          { yybegin(YYINITIAL); return VhdlTypes.CONSTRAINT;
           }
         case 229: break;
         case 90: 
-          { yybegin(YYINITIAL); return VhdlTypes.T_REPORT;
+          { yybegin(YYINITIAL); return VhdlTypes.REPORT;
           }
         case 230: break;
         case 83: 
-          { yybegin(YYINITIAL); return VhdlTypes.T_GROUP;
+          { yybegin(YYINITIAL); return VhdlTypes.GROUP;
           }
         case 231: break;
         case 50: 
-          { yybegin(YYINITIAL); return VhdlTypes.T_SLL;
+          { yybegin(YYINITIAL); return VhdlTypes.SLL;
           }
         case 232: break;
         case 87: 
-          { yybegin(YYINITIAL); return VhdlTypes.T_ACCESS;
+          { yybegin(YYINITIAL); return VhdlTypes.ACCESS;
           }
         case 233: break;
         case 11: 
-          { yybegin(YYINITIAL); return VhdlTypes.T_EQU;
+          { yybegin(YYINITIAL); return VhdlTypes.EQU;
           }
         case 234: break;
         case 42: 
-          { yybegin(YYINITIAL); return VhdlTypes.T_REM;
+          { yybegin(YYINITIAL); return VhdlTypes.REM;
           }
         case 235: break;
         case 122: 
-          { yybegin(YYINITIAL); return VhdlTypes.T_CONFIGURATION;
+          { yybegin(YYINITIAL); return VhdlTypes.CONFIGURATION;
           }
         case 236: break;
         case 34: 
@@ -1454,31 +1453,31 @@ class _VhdlLexer implements FlexLexer {
           }
         case 237: break;
         case 24: 
-          { yybegin(YYINITIAL); return VhdlTypes.T_IF;
+          { yybegin(YYINITIAL); return VhdlTypes.IF;
           }
         case 238: break;
         case 55: 
-          { yybegin(YYINITIAL); return VhdlTypes.T_MOD;
+          { yybegin(YYINITIAL); return VhdlTypes.MOD;
           }
         case 239: break;
         case 30: 
-          { yybegin(YYINITIAL); return VhdlTypes.T_NE;
+          { yybegin(YYINITIAL); return VhdlTypes.NE;
           }
         case 240: break;
         case 100: 
-          { yybegin(YYINITIAL); return VhdlTypes.T_LIBRARY;
+          { yybegin(YYINITIAL); return VhdlTypes.LIBRARY;
           }
         case 241: break;
         case 53: 
-          { yybegin(YYINITIAL); return VhdlTypes.T_XOR;
+          { yybegin(YYINITIAL); return VhdlTypes.XOR;
           }
         case 242: break;
         case 13: 
-          { yybegin(YYINITIAL); return VhdlTypes.T_DIV;
+          { yybegin(YYINITIAL); return VhdlTypes.DIV;
           }
         case 243: break;
         case 12: 
-          { yybegin(YYINITIAL); return VhdlTypes.T_ADD;
+          { yybegin(YYINITIAL); return VhdlTypes.ADD;
           }
         case 244: break;
         default:

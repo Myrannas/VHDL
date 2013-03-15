@@ -39,6 +39,8 @@ class LoggingParserTemplate(var template: ParserTemplate) extends ParserTemplate
     wrap(template.expectIn(elements, error))
   }
 
+  def expectIn(elements: IElementType*) = this
+
   def expectAndMarkSingle(element: IElementType, markAs: IElementType, error: String) = wrap(template.expectAndMarkSingle(element, markAs, error))
 
   def expectInAndMarkSingle(element: TokenSet, markAs: IElementType, error: String) = wrap(template.expectInAndMarkSingle(element, markAs, error))
