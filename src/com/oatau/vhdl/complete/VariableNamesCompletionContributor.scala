@@ -7,6 +7,10 @@ import com.oatau.vhdl.psi.{VhdlNamedElement, VhdlScope}
 import com.intellij.util.ProcessingContext
 import com.intellij.psi.scope.BaseScopeProcessor
 import com.intellij.psi.{ResolveState, PsiElement}
+import com.oatau.vhdl.util.{ElementUtil, ScopeUtil}
+import com.oatau.vhdl.parser.psi.ParserTypes
+import com.oatau.vhdl.lexer.VhdlTypes
+import com.intellij.openapi.module.ModuleUtilCore
 
 /**
  * User: Michael
@@ -24,6 +28,18 @@ class VariableNamesCompletionContributor extends CompletionContributor{
             true
           case _ => true
         })
+
+    }
+  })
+
+  extend(CompletionType.BASIC,
+    PlatformPatterns.psiElement
+      .inside(PlatformPatterns.psiElement(ParserTypes.SENSITIVITY_LIST))
+      .andOr(
+        PlatformPatterns.psiElement().afterLeaf(PlatformPatterns.psiElement(VhdlTypes.LEFPAREN)),
+        PlatformPatterns.psiElement().afterLeaf(PlatformPatterns.psiElement(VhdlTypes.CMA))
+    ),new CompletionProvider[CompletionParameters]() {
+    def addCompletions(completionParameters: CompletionParameters, p2: ProcessingContext, completionResultSet: CompletionResultSet) {
 
     }
   })

@@ -1,4 +1,4 @@
-package com.oatau.vhdl.complete
+package com.oatau.vhdl.util
 
 import com.intellij.psi.PsiElement
 

@@ -12,6 +12,9 @@ import com.oatau.vhdl.psi.SimpleTokenType
 object ParserTypes {
   final val PACKAGE: IElementType = new SimpleTokenType("package")
   final val ENTITY: IElementType = new SimpleTokenType("entity")
+  final val ARCHITECTURE: IElementType = new SimpleTokenType("architecture")
+  final val ENTITY_REFERENCE: IElementType = new SimpleTokenType("architecture")
   final val PORT: IElementType = new SimpleTokenType("port")
-
+  final val PROCESS: IElementType = new SimpleTokenType("process")
+  final val SENSITIVITY_LIST: IElementType = new SimpleTokenType("sensitivityList")
 }

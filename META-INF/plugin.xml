@@ -43,5 +43,6 @@
                                        implementationClass="com.oatau.vhdl.highlight.VhdlSyntaxHighlighterFactory"/>
         <completion.contributor language="Vhdl" implementationClass="com.oatau.vhdl.complete.EntityNamesCompletionContributor"/>
         <completion.contributor language="Vhdl" implementationClass="com.oatau.vhdl.complete.VariableNamesCompletionContributor"/>
+        <psi.referenceContributor implementation="com.oatau.vhdl.complete.VhdlReferenceContributor"/>
     </extensions>
 </idea-plugin>
