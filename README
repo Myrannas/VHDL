@@ -1,1 +1,3 @@
-This file was created by IntelliJ IDEA 12.0.2 for binding GitHub repository
+Vhdl editor for intelliJ.
+
+This plugin allows you to edit vhdl code in an intelligent environment, with all the niceties of modern programming including code completion, refractoring, error checking and code navigation.
