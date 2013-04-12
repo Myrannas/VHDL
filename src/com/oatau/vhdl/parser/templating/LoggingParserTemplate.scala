@@ -51,6 +51,10 @@ class LoggingParserTemplate(var template: ParserTemplate) extends ParserTemplate
 
   def apply() = template.apply()
 
+  def rollbackToMark() = template.rollbackToMark()
+
+  def dropMark() = template.dropMark()
+
   def when(condition: (IElementType) => Boolean)(block: (ParserTemplate) => ParserTemplate) = wrap(template.when(condition)(block))
 
   def parse(block: (ParserTemplate) => ParserTemplate) = wrap(template.parse(block))

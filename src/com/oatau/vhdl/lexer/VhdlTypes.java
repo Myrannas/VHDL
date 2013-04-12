@@ -2,6 +2,7 @@
 package com.oatau.vhdl.lexer;
 
 import com.intellij.psi.tree.IElementType;
+import com.intellij.psi.tree.TokenSet;
 import com.oatau.vhdl.psi.SimpleTokenType;
 
 public interface VhdlTypes {
@@ -133,5 +134,5 @@ public interface VhdlTypes {
   IElementType XNOR = new SimpleTokenType("xnor");
   IElementType XOR = new SimpleTokenType("xor");
 
-
+  TokenSet DIRECTION = TokenSet.create(IN,OUT,INOUT,BUFFER);
 }

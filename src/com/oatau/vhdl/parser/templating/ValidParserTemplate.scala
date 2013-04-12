@@ -47,6 +47,18 @@ class ValidParserTemplate(val builder: PsiBuilder) extends ParserTemplate {
 
   def apply(): Boolean = true
 
+  def rollbackToMark() = {
+    markStack.head.rollbackTo()
+    markStack = markStack.pop
+    this
+  }
+
+  def dropMark() = {
+    markStack.head.drop()
+    markStack = markStack.pop
+    this
+  }
+
   def advance() = {
     builder.advanceLexer()
     this

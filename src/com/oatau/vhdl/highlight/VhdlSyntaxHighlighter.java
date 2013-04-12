@@ -29,7 +29,8 @@ public class VhdlSyntaxHighlighter extends SyntaxHighlighterBase {
 
     private static TokenSet keywords = TokenSet.create(VhdlTypes.ENTITY, VhdlTypes.IS, VhdlTypes.END, VhdlTypes.IN, VhdlTypes.INOUT,
             VhdlTypes.OUT, VhdlTypes.LIBRARY, VhdlTypes.USE, VhdlTypes.ARCHITECTURE, VhdlTypes.BEGIN, VhdlTypes.OF, VhdlTypes.PORT,
-            VhdlTypes.PROCESS, VhdlTypes.IF, VhdlTypes.CASE, VhdlTypes.ELSIF, VhdlTypes.ELSE, VhdlTypes.SIGNAL, VhdlTypes.THEN);
+            VhdlTypes.PROCESS, VhdlTypes.IF, VhdlTypes.CASE, VhdlTypes.ELSIF, VhdlTypes.ELSE, VhdlTypes.SIGNAL, VhdlTypes.THEN,
+            VhdlTypes.CONSTANT, VhdlTypes.TYPE, VhdlTypes.WHEN);
 
     @NotNull
     @Override

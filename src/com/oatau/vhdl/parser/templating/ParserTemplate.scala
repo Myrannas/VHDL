@@ -10,8 +10,7 @@ import com.intellij.openapi.diagnostic.Logger
  *
  * Is designed to be used as a fluent interface.
  */
-trait ParserTemplate extends {
-
+trait ParserTemplate {
 
   def inError: Boolean
 
@@ -34,6 +33,10 @@ trait ParserTemplate extends {
   def advance(): ParserTemplate
 
   def apply(): Boolean
+
+  def rollbackToMark() : ParserTemplate
+
+  def dropMark() : ParserTemplate
 
   /**
    * If condition is true, execute the block.

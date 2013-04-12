@@ -13,18 +13,22 @@ import com.intellij.openapi.util.TextRange
  * Date: 16/03/13
  * Time: 15:07
  */
-class VArchitectureEntityRefImpl(node:ASTNode) extends VBaseScalaPsiElement(node)  {
+class VArchitectureEntityRefImpl(node:ASTNode) extends ScalaPsiElement(node) {
 
-  override def getReference: PsiReference = new PsiReferenceBase[VArchitectureEntityRefImpl](this) {
-    def resolve(): PsiElement = {
-      ElementUtil.allEntities(ModuleUtilCore.findModuleForPsiElement(getElement)).find(_.getName == getElement.getText).getOrElse(null)
-    }
-
-    def getVariants: Array[AnyRef] = Array()
-
-    override def getRangeInElement: TextRange = TextRange.allOf(entityName)
-  }
+  override def getReference: EntityReference = new EntityReference(this)
 
 
   def entityName = childByType(VhdlTypes.ID).map(_.getText).get
+}
+
+class EntityReference(node:VArchitectureEntityRefImpl) extends PsiReferenceBase[VArchitectureEntityRefImpl](node) {
+  def resolve(): PsiElement = {
+    entity.getOrElse(null)
+  }
+
+  def entity = ElementUtil.allEntities(ModuleUtilCore.findModuleForPsiElement(getElement)).find(_.getName == getElement.getText)
+
+  def getVariants: Array[AnyRef] = Array()
+
+  override def getRangeInElement: TextRange = TextRange.allOf(node.entityName)
 }

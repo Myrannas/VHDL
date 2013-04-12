@@ -21,6 +21,8 @@ class InvalidParserTemplate(val builder: PsiBuilder) extends ParserTemplate {
 
   def apply() = false
 
+  def rollbackToMark() = this
+
   def recoverWith(elements: (IElementType, Position)*): ParserTemplate = {
     val escapes = TokenSet.create(elements.map(_._1): _*)
     while (!builder.eof()) {
@@ -72,4 +74,6 @@ class InvalidParserTemplate(val builder: PsiBuilder) extends ParserTemplate {
   def endMark(eType: IElementType) = this
 
   def optional(element: IElementType) = this
+
+  def dropMark(): ParserTemplate = this
 }

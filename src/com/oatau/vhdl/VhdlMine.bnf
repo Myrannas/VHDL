@@ -157,7 +157,7 @@
     tokenTypeClass="com.oatau.vhdl.psi.SimpleTokenType"
 
     implements("entity|port|architecture_signal") = "com.oatau.vhdl.psi.VhdlNamedElement"
-    implements("architecture") = "com.oatau.vhdl.psi.VhdlScope"
+    implements("architecture") = "com.oatau.vhdl.parser.psi.VScope"
 }
 
 
